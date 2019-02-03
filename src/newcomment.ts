@@ -62,21 +62,25 @@ export const gramComment = (instaUsername: string, instaPassword: string) => {
               console.log("was false");
             }
           });
+
+          setTimeout(function() {
+            connection.close();
+          }, 10000);
         })
         .then((r: any) => resolve(true));
     }
   );
 };
 
-gramComment("nonbrainwashed", "jakeadelman");
-
 let accounts = [
   { username: "nonbrainwashed", password: "jakeadelman" },
-  { username: "helloagainboiz", password: "jakeadelman" }
+  { username: "helloagainboiz", password: "jakeadelman" },
+  { username: "erikolsonnna", password: "jakeadelman" },
+  { username: "crypto_is_king1", password: "jakeadelman" }
 ];
 
-setTimeout(function() {
+setInterval(function() {
   accounts.map(account => {
     gramComment(account.username, account.password);
   });
-}, 100000);
+}, 250000);

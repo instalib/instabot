@@ -60,4 +60,4 @@ export const fetchDan = (instaUsername: string, instaPassword: string) => {
 
 setInterval(function() {
   fetchDan("nonbrainwashed", "jakeadelman");
-}, 25000);
+}, 250000);
