@@ -20,7 +20,8 @@
     "start": "ts-node src/index.ts",
     "newposts": "ts-node-dev --respawn src/newposts.ts",
     "newcomment": "ts-node-dev --respawn src/newcomment.ts",
-    "initialposts": "ts-node src/initialposts.ts"
+    "initialposts": "ts-node src/initialposts.ts",
+    "account-creator": "ts-node src/accountCreator.ts"
   },
   "devDependencies": {
     "@types/node": "^8.0.29",

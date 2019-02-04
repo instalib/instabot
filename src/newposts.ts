@@ -16,6 +16,8 @@ export const fetchDan = (
     (resolve): any => {
       Client.Session.create(device, storage, instaUsername, instaPassword)
         .then(function(session: any) {
+          session = session.setProxy("http://142.93.38.72:8080");
+
           return [session, Client.Account.searchForUser(session, instaUser)];
         })
         .spread(async function(session, account) {
@@ -65,7 +67,7 @@ export const fetchDan = (
 };
 
 const startMain = async () => {
-  const user = "nonbrainwashed";
+  const user = "classicfusldk";
   const pass = "jakeadelman";
   const connection = await createConnection({
     type: "postgres",
