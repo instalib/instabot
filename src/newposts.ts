@@ -76,12 +76,12 @@ const startMain = async () => {
     database: "danlok",
     entities: [__dirname + "/entity/*.*"]
   });
-  let userList = ["iambotlad", "danlok", "jasoncapital"];
+  let userList = ["danlok", "jasoncapital"];
   setInterval(function() {
     userList.map(instaUser => {
       fetchDan(connection, instaUser, user, pass);
     });
-  }, 60000);
+  }, 6000);
 };
 
 startMain();

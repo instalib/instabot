@@ -19,7 +19,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "newposts": "ts-node-dev --respawn src/newposts.ts",
-    "newcomment": "ts-node src/newcomment.ts",
+    "newcomment": "ts-node-dev --respawn src/newcomment.ts",
     "initialposts": "ts-node src/initialposts.ts"
   },
   "devDependencies": {

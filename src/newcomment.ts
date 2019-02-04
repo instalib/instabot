@@ -17,7 +17,7 @@ export const gramComment = (
   return new Promise(
     (resolve): any => {
       Client.Session.create(device, storage, instaUsername, instaPassword)
-        .spread(async (session: any) => {
+        .then(async (session: any) => {
           console.log(`in session`);
           return new Client.Request(session)
             .setMethod("POST")
@@ -62,10 +62,12 @@ const startEt = async () => {
   });
 
   let accounts: any[] = [
-    "nonbrainwashed"
-    // "helloagainboiz",
-    // "erikolsonnna",
-    // "crypto_is_king1"
+    "nonbrainwashed",
+    "helloagainboiz",
+    "erikolsonnna",
+    "crypto_is_king1",
+    "iambotlad",
+    "graysonnewtonerr"
   ];
 
   setInterval(async function() {
@@ -87,7 +89,7 @@ const startEt = async () => {
         return;
       }
     });
-  }, 10000);
+  }, 20000);
 };
 
 startEt();
