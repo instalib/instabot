@@ -1,6 +1,6 @@
 import { DanMedia } from "./entity/DanMedia";
 import { createConnection } from "typeorm";
-export const fetchDan = (instaUsername: string, instaPassword: string) => {
+export const fetchDan = (instaUser: string,instaUsername: string, instaPassword: string) => {
   var Client = require("instagram-private-api").V1;
   var device = new Client.Device(instaUsername);
   var storage = new Client.CookieFileStorage(
@@ -10,7 +10,7 @@ export const fetchDan = (instaUsername: string, instaPassword: string) => {
     (resolve): any => {
       Client.Session.create(device, storage, instaUsername, instaPassword)
         .then(function(session) {
-          return [session, Client.Account.searchForUser(session, "danlok")];
+          return [session, Client.Account.searchForUser(session, instaUser)];
         })
         .spread(async function(session, account) {
           var feed = new Client.Feed.UserMedia(session, account.id);
@@ -19,7 +19,7 @@ export const fetchDan = (instaUsername: string, instaPassword: string) => {
             type: "postgres",
             host: "localhost",
             port: 5432,
-            username: "manx",
+            username: "postgres",
             password: "jakeadelman",
             database: "danlok",
             entities: [__dirname + "/entity/*.*"]
@@ -40,7 +40,7 @@ export const fetchDan = (instaUsername: string, instaPassword: string) => {
                   danny.new = true;
                   await danlokRepository.save(danny);
                 } else {
-                  console.log("found tweet");
+                  console.log("found new post");
                   return;
                 }
               });
@@ -58,6 +58,20 @@ export const fetchDan = (instaUsername: string, instaPassword: string) => {
   );
 };
 
-setInterval(function() {
-  fetchDan("nonbrainwashed", "jakeadelman");
-}, 250000);
+const startMain = ()=> {
+  const user = 'nonbrainwashed'
+  const pass = 'jakeadelman'
+    
+  setInterval(function() {
+    userList.map(user=>{
+
+
+      fetchDan(instaUser, user, pass);
+
+    })
+
+  }, 20000);
+
+}
+
+startMain()
