@@ -7,16 +7,18 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
+    "chalk": "^2.4.2",
     "instagram-private-api": "^0.6.8",
     "mysql": "^2.14.1",
     "pg": "^7.8.0",
     "reflect-metadata": "^0.1.10",
     "ts-node": "^8.0.2",
+    "ts-node-dev": "^1.0.0-pre.32",
     "typeorm": "0.2.12"
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "newposts": "ts-node src/newposts.ts",
+    "newposts": "ts-node-dev --respawn src/newposts.ts",
     "newcomment": "ts-node src/newcomment.ts",
     "initialposts": "ts-node src/initialposts.ts"
   },

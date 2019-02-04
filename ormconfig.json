@@ -3,7 +3,7 @@
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "username": "postgres",
+  "username": "manx",
   "password": "jakeadelman",
   "database": "danlok",
   "synchronize": true,

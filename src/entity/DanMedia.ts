@@ -9,5 +9,8 @@ export class DanMedia {
   mediaId: string;
 
   @Column()
+  time: string;
+
+  @Column()
   new: boolean;
 }
