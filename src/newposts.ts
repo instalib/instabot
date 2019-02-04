@@ -16,7 +16,7 @@ export const fetchDan = (
     (resolve): any => {
       Client.Session.create(device, storage, instaUsername, instaPassword)
         .then(function(session: any) {
-          session = session.setProxy("http://142.93.38.72:8080");
+          // session = session.setProxy("http://142.93.38.72:8080");
 
           return [session, Client.Account.searchForUser(session, instaUser)];
         })
@@ -67,7 +67,7 @@ export const fetchDan = (
 };
 
 const startMain = async () => {
-  const user = "classicfusldk";
+  const user = "simps00ns";
   const pass = "jakeadelman";
   const connection = await createConnection({
     type: "postgres",
@@ -78,12 +78,12 @@ const startMain = async () => {
     database: "danlok",
     entities: [__dirname + "/entity/*.*"]
   });
-  let userList = ["danlok", "jasoncapital"];
+  let userList = ["kingketo"];
   setInterval(function() {
     userList.map(instaUser => {
       fetchDan(connection, instaUser, user, pass);
     });
-  }, 6000);
+  }, 2000);
 };
 
 startMain();

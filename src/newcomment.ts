@@ -44,7 +44,28 @@ export const gramComment = (
               console.log("commented and changed to false");
             });
         })
-        .then((r: any) => resolve(true));
+        .catch(r => {
+          challengeMe(r);
+        });
+
+      function challengeMe(error) {
+        return Client.Web.Challenge.resolve(error, "phone")
+          .then(function(challenge) {
+            // challenge instanceof Client.Web.Challenge
+            console.log(challenge.type);
+            // can be phone or email
+            // let's assume we got phone
+            if (challenge.type !== "phone") return;
+            //Let's check if we need to submit/change our phone number
+            return challenge.phone("16479668071").then(function() {
+              return challenge;
+            });
+          })
+          .then(function(challenge) {
+            // Ok we got to the next step, the response code expected by Instagram
+            return challenge.code("123456");
+          });
+      }
     }
   );
 };
@@ -67,7 +88,9 @@ const startEt = async () => {
     "erikolsonnna",
     "crypto_is_king1",
     "iambotlad",
-    "graysonnewtonerr"
+    "graysonnewtonerr",
+    "augustgreen__",
+    "simps00ns"
   ];
 
   setInterval(async function() {
@@ -89,7 +112,7 @@ const startEt = async () => {
         return;
       }
     });
-  }, 20000);
+  }, 2000);
 };
 
 startEt();
