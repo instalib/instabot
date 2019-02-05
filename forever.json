@@ -4,14 +4,14 @@
     "append": true,
     "watch": true,
     "script": "newposts.ts",
-    "sourceDir": "/Users/manx/projects/instabot/instabot-npm/src"
+    "sourceDir": "/root/projects/instabot/instabot-npm/src"
   },
   {
     "uid": "app2",
     "append": true,
     "watch": true,
     "script": "newcomment.ts",
-    "sourceDir": "/Users/manx/projects/instabot/instabot-npm/src",
+    "sourceDir": "/root/projects/instabot/instabot-npm/src",
     "args": ["--port", "8081"]
   }
 ]
