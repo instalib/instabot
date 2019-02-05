@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Instgram bot built with typescript
 
 Steps to run this project:
 
