@@ -26,35 +26,40 @@ export const fetchDan = (
         })
         .spread((connection: Connection, session, results) => {
           // results.map(async (res: any) => {
-          for (let i = 0; i < 4; i++) {
-            let res = results[i];
-            let commentCount = res._params.commentCount;
-            if (commentCount && commentCount > 0) {
-              const danlokRepository = connection.getRepository(DanMedia);
-              let reso = danlokRepository.find({ where: { mediaId: res.id } });
-              reso.then(async (r: any) => {
-                if (typeof r[0] == "undefined") {
-                  console.log(
-                    chalk.bold.green(`+1`) +
-                      chalk.green(` adding post for ${instaUser}, ${i} post`)
-                  );
-                  let danny = new DanMedia();
-                  danny.mediaId = res.id;
-                  danny.new = true;
-                  let currTime = new Date();
-                  danny.time = currTime.toString();
-                  await danlokRepository.save(danny);
-                } else {
-                  console.log(
-                    chalk.red(`>> found post for ${instaUser}. not adding`)
-                  );
-                  return;
-                }
-              });
-            } else {
-              return;
-            }
-          }
+          // for (let i = 0; i < 4; i++) {
+          let res = results[0];
+          let id = res.id;
+          // console.log(res.comments, "THIS RES");
+          let comments = new Client.Feed.MediaComments(session, id);
+          comments.get().then(r => console.log(r));
+          // console.log(res._params, "THIS Params");
+          // let commentCount = res._params.commentCount;
+          // if (commentCount && commentCount > 0) {
+          //   const danlokRepository = connection.getRepository(DanMedia);
+          //   let reso = danlokRepository.find({ where: { mediaId: res.id } });
+          //   reso.then(async (r: any) => {
+          //     if (typeof r[0] == "undefined") {
+          //       console.log(
+          //         chalk.bold.green(`+1`) +
+          //           chalk.green(` adding post for ${instaUser}, ${i} post`)
+          //       );
+          //       let danny = new DanMedia();
+          //       danny.mediaId = res.id;
+          //       danny.new = true;
+          //       let currTime = new Date();
+          //       danny.time = currTime.toString();
+          //       await danlokRepository.save(danny);
+          //     } else {
+          //       console.log(
+          //         chalk.red(`>> found post for ${instaUser}. not adding`)
+          //       );
+          //       return;
+          //     }
+          //   });
+          // } else {
+          //   return;
+          // }
+          // }
           // });
           // setTimeout(function() {
           //   connection.close();
@@ -67,7 +72,7 @@ export const fetchDan = (
 };
 
 const startMain = async () => {
-  const user = "nonbrainwashed";
+  const user = "momo_52_mo";
   const pass = "jakeadelman";
   const connection = await createConnection({
     type: "postgres",
@@ -83,7 +88,7 @@ const startMain = async () => {
     userList.map(instaUser => {
       fetchDan(connection, instaUser, user, pass);
     });
-  }, 10000);
+  }, 6000);
 };
 
 startMain();
