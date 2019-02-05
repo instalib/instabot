@@ -26,32 +26,34 @@ export const fetchDan = (
         })
         .spread((connection: Connection, session, results) => {
           // results.map(async (res: any) => {
-          let res = results[0];
-          let commentCount = res._params.commentCount;
-          if (commentCount && commentCount > 0) {
-            const danlokRepository = connection.getRepository(DanMedia);
-            let reso = danlokRepository.find({ where: { mediaId: res.id } });
-            reso.then(async (r: any) => {
-              if (typeof r[0] == "undefined") {
-                console.log(
-                  chalk.bold.green(`+1`) +
-                    chalk.green(` adding post for ${instaUser}`)
-                );
-                let danny = new DanMedia();
-                danny.mediaId = res.id;
-                danny.new = true;
-                let currTime = new Date();
-                danny.time = currTime.toString();
-                await danlokRepository.save(danny);
-              } else {
-                console.log(
-                  chalk.red(`>> found post for ${instaUser}. not adding`)
-                );
-                return;
-              }
-            });
-          } else {
-            return;
+          for (let i = 0; i < 4; i++) {
+            let res = results[i];
+            let commentCount = res._params.commentCount;
+            if (commentCount && commentCount > 0) {
+              const danlokRepository = connection.getRepository(DanMedia);
+              let reso = danlokRepository.find({ where: { mediaId: res.id } });
+              reso.then(async (r: any) => {
+                if (typeof r[0] == "undefined") {
+                  console.log(
+                    chalk.bold.green(`+1`) +
+                      chalk.green(` adding post for ${instaUser}, ${i} post`)
+                  );
+                  let danny = new DanMedia();
+                  danny.mediaId = res.id;
+                  danny.new = true;
+                  let currTime = new Date();
+                  danny.time = currTime.toString();
+                  await danlokRepository.save(danny);
+                } else {
+                  console.log(
+                    chalk.red(`>> found post for ${instaUser}. not adding`)
+                  );
+                  return;
+                }
+              });
+            } else {
+              return;
+            }
           }
           // });
           // setTimeout(function() {
@@ -76,12 +78,12 @@ const startMain = async () => {
     database: "danlok",
     entities: [__dirname + "/entity/*.*"]
   });
-  let userList = ["danlok", "jasoncapital"];
+  let userList = ["incomesecrets"];
   setInterval(function() {
     userList.map(instaUser => {
       fetchDan(connection, instaUser, user, pass);
     });
-  }, 6000);
+  }, 10000);
 };
 
 startMain();

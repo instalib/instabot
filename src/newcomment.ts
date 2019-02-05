@@ -67,8 +67,22 @@ const startEt = async () => {
     "erikolsonnna",
     "crypto_is_king1",
     "iambotlad",
-    "graysonnewtonerr"
+    "graysonnewtonerr",
+    "internet3marketer",
+    "jason_massi82",
+    "marketingonlineforeducated",
+    "misterappleseed_",
+    // "randommanzoo3o23",
+    "augustgreen__"
   ];
+
+  //   internet3marketer
+  // jason_massi82
+  // marketingonlineforeducated
+  // misterappleseed_
+
+  // randommanzoo3o23
+  // momo_52_mo
 
   setInterval(async function() {
     let danny = connection.getRepository(DanMedia);
